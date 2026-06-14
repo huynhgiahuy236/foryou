@@ -939,7 +939,7 @@ export default function App() {
 
           {/* Sincere Footer copyright notation */}
           <footer className="text-center pt-6 text-[10px] text-[#8A6D52]/60 font-light select-none">
-            Thiết kế chân thành dành riêng cho ngày 15/06 🌟
+           Just for you 
           </footer>
         </div>
       )}
