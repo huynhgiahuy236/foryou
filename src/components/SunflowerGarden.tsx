@@ -11,23 +11,68 @@ const WISHES: Wish[] = [
   { id: 1, text: "Mong em luôn khỏe mạnh và tràn đầy sức sống mỗi ngày." },
   { id: 2, text: "Mong em luôn giữ được nụ cười vô tư, rạng rỡ nhất." },
   { id: 3, text: "Mong cuộc đời sẽ luôn đối xử dịu dàng và tử tế với em." },
-  { id: 4, text: "Mong em luôn được yêu thương chân thành bởi những người xung quanh." },
-  { id: 5, text: "Mong tất cả những ước mơ, dự định của em sớm thành hiện thực." },
-  { id: 6, text: "Mong mỗi sáng thức dậy em luôn tràn ngập niềm vui và năng lượng." },
-  { id: 7, text: "Mong tâm hồn em có được sự bình yên, nhẹ nhõm sau những mệt mỏi." },
+  {
+    id: 4,
+    text: "Mong em luôn được yêu thương chân thành bởi những người xung quanh.",
+  },
+  {
+    id: 5,
+    text: "Mong tất cả những ước mơ, dự định của em sớm thành hiện thực.",
+  },
+  {
+    id: 6,
+    text: "Mong mỗi sáng thức dậy em luôn tràn ngập niềm vui và năng lượng.",
+  },
+  {
+    id: 7,
+    text: "Mong tâm hồn em có được sự bình yên, nhẹ nhõm sau những mệt mỏi.",
+  },
   { id: 8, text: "Mong em gặp thật nhiều may mắn và những bất ngờ ngọt ngào." },
-  { id: 9, text: "Mong con đường em đang tự tin bước đi luôn ngập tràn ánh nắng." },
-  { id: 10, text: "Mong em luôn có những người bạn tốt và chân thành đồng hành." },
-  { id: 11, text: "Mong công việc và học tập của em luôn diễn ra suôn sẻ, thuận lợi." },
-  { id: 12, text: "Mong em tìm thấy niềm vui và hạnh phúc từ những điều bé nhỏ nhất." },
-  { id: 13, text: "Mong em luôn tự tin, kiên định và vững vàng trước mọi giông bão." },
-  { id: 14, text: "Mong thế giới này ngập tràn những điều tốt đẹp chào đón em." },
-  { id: 15, text: "Mong tâm trạng em luôn luôn ấm áp và tỏa sáng rực rỡ như hoa hướng dương." },
-  { id: 16, text: "Mong những người em gặp đều là người tốt và yêu mến em hết lòng." },
-  { id: 17, text: "Mong em luôn khỏe khoắn, bình yên trong từng hơi thở, cuộc sống." },
-  { id: 18, text: "Mong thanh xuân của em luôn lưu giữ những hồi ức say đắm và hạnh phúc." },
-  { id: 19, text: "Mong em dù trưởng thành đến đâu cũng luôn giữ lại phần ngây ngô, đáng yêu." },
-  { id: 20, text: "Mong em có một tuổi mới thật trọn vẹn, hạnh phúc và bình an." },
+  {
+    id: 9,
+    text: "Mong con đường em đang tự tin bước đi luôn ngập tràn ánh nắng.",
+  },
+  {
+    id: 10,
+    text: "Mong em luôn có những người bạn tốt và chân thành đồng hành.",
+  },
+  { id: 11, text: "Mong em gặp một ai đó cho em sự an toàn " },
+  {
+    id: 12,
+    text: "Mong em tìm thấy niềm vui và hạnh phúc từ những điều bé nhỏ nhất.",
+  },
+  {
+    id: 13,
+    text: "Mong em luôn tự tin, kiên định và vững vàng trước mọi giông bão.",
+  },
+  {
+    id: 14,
+    text: "Mong thế giới này ngập tràn những điều tốt đẹp chào đón em.",
+  },
+  {
+    id: 15,
+    text: "Mong tâm trạng em luôn luôn ấm áp và tỏa sáng rực rỡ như hoa hướng dương.",
+  },
+  {
+    id: 16,
+    text: "Mong những người em gặp đều là người tốt và yêu mến em hết lòng.",
+  },
+  {
+    id: 17,
+    text: "Đặc biệt: Mong em luôn mạnh mẽ, không lo buồn,anh mong em hiểu em luôn xứng đáng với những điều tốt đẹp những điều mà anh chưa từng để em thấy.",
+  },
+  {
+    id: 18,
+    text: "Mong thanh xuân của em luôn lưu giữ những điều tốt đẹp nhất.",
+  },
+  {
+    id: 19,
+    text: "Mong em dù trưởng thành đến đâu cũng luôn giữ lại phần ngây ngô, đáng yêu.",
+  },
+  {
+    id: 20,
+    text: "Mong em có một tuổi mới thật trọn vẹn, hạnh phúc và bình an.",
+  },
 ];
 
 export default function SunflowerGarden() {
@@ -48,20 +93,29 @@ export default function SunflowerGarden() {
       {/* Garden Stats Banner */}
       <div className="text-center mb-8 bg-[#FFF9F2] p-4 rounded-2xl border border-[#C97A2B]/10 shadow-sm max-w-sm mx-auto">
         <div className="text-xs text-[#8A6D52] uppercase font-semibold tracking-wider flex items-center justify-center gap-1.5 mb-1">
-          <Heart className="w-3.5 h-3.5 text-[#C97A2B] fill-[#C97A2B]" /> Vườn hoa sinh nhật
+          <Heart className="w-3.5 h-3.5 text-[#C97A2B] fill-[#C97A2B]" /> Vườn
+          hoa sinh nhật
         </div>
         <p className="text-sm font-medium text-[#2A1C14]">
-          Đã gieo trồng <span className="text-[#C97A2B] font-bold text-base">20</span> đóa hướng dương chứa đựng 20 lời chúc lành dành cho em.
+          Đã gieo trồng{" "}
+          <span className="text-[#C97A2B] font-bold text-base">20</span> đóa
+          hướng dương chứa đựng 20 lời chúc lành dành cho em.
         </p>
         <div className="mt-3 bg-[#F6EFE4] h-2 rounded-full overflow-hidden w-full relative">
           <motion.div
             className="h-full bg-gradient-to-r from-[#C97A2B] to-[#FFBF3F]"
-            animate={{ width: `${(openedWishes.length / WISHES.length) * 100}%` }}
+            animate={{
+              width: `${(openedWishes.length / WISHES.length) * 100}%`,
+            }}
             transition={{ type: "spring", damping: 15, stiffness: 80 }}
           />
         </div>
         <div className="text-[11px] text-[#8A6D52] mt-1.5 font-mono">
-          Số đóa hoa em đã mở: <span className="text-[#C97A2B] font-semibold">{openedWishes.length}</span>/20 🌻
+          Số đóa hoa em đã mở:{" "}
+          <span className="text-[#C97A2B] font-semibold">
+            {openedWishes.length}
+          </span>
+          /20 🌻
         </div>
       </div>
 
@@ -85,8 +139,15 @@ export default function SunflowerGarden() {
                 {!isOpen && (
                   <motion.div
                     className="absolute top-1 right-2 text-[#C97A2B]"
-                    animate={{ scale: [0.7, 1.2, 0.7], opacity: [0.4, 0.9, 0.4] }}
-                    transition={{ duration: 1.8, repeat: Infinity, delay: index * 0.15 }}
+                    animate={{
+                      scale: [0.7, 1.2, 0.7],
+                      opacity: [0.4, 0.9, 0.4],
+                    }}
+                    transition={{
+                      duration: 1.8,
+                      repeat: Infinity,
+                      delay: index * 0.15,
+                    }}
                   >
                     <Sparkles className="w-3 h-3 fill-current" />
                   </motion.div>
@@ -95,7 +156,10 @@ export default function SunflowerGarden() {
                 {/* Sunflower shape */}
                 <div className="relative w-11 h-11 flex items-center justify-center">
                   {/* Stem of each flower */}
-                  <div className="absolute top-9 bottom-0 w-0.5 bg-[#5D7546] left-1/2 -translate-x-1/2 -z-10" style={{ height: "18px" }} />
+                  <div
+                    className="absolute top-9 bottom-0 w-0.5 bg-[#5D7546] left-1/2 -translate-x-1/2 -z-10"
+                    style={{ height: "18px" }}
+                  />
                   {/* Tiny green leaves */}
                   {index % 2 === 0 && (
                     <div className="absolute bottom-[-6px] left-[17px] w-2.5 h-1.5 bg-[#5D7546] rounded-full rotate-[-25deg] origin-left -z-10" />
@@ -107,7 +171,11 @@ export default function SunflowerGarden() {
                   {/* Rotatable petals container */}
                   <motion.div
                     animate={isOpen ? { rotate: [0, 360] } : {}}
-                    transition={isOpen ? { duration: 12, repeat: Infinity, ease: "linear" } : {}}
+                    transition={
+                      isOpen
+                        ? { duration: 12, repeat: Infinity, ease: "linear" }
+                        : {}
+                    }
                     className="absolute inset-0 flex items-center justify-center"
                   >
                     {[...Array(8)].map((_, pi) => (
@@ -158,7 +226,9 @@ export default function SunflowerGarden() {
                     className="w-1.5 h-1.5 rounded-full bg-[#C97A2B] mt-5"
                   />
                 )}
-                {!isOpen && <div className="w-1.5 h-1.5 rounded-full bg-transparent mt-5" />}
+                {!isOpen && (
+                  <div className="w-1.5 h-1.5 rounded-full bg-transparent mt-5" />
+                )}
               </div>
             </motion.div>
           );
@@ -187,7 +257,9 @@ export default function SunflowerGarden() {
 
               {/* Wish content text */}
               <div className="text-center px-2">
-                <p className="text-[#8A6D52] text-[11px] tracking-widest uppercase font-mono mb-2">Lời chúc lành của đóa hoa</p>
+                <p className="text-[#8A6D52] text-[11px] tracking-widest uppercase font-mono mb-2">
+                  Lời chúc lành của đóa hoa
+                </p>
                 <div className="text-[#2A1C14] text-base font-serif font-medium leading-relaxed my-3 italic">
                   &ldquo;{activeWish.text}&rdquo;
                 </div>

@@ -480,7 +480,9 @@ export default function App() {
                         <p>
                           • <b>Những điều đáng lẽ:</b> Lẽ ra anh nên bao dung
                           hơn, nhường nhịn hơn và chia sẻ chân thành thay vì
-                          bướng bỉnh tranh cãi ngày đó, xin lỗi những lần ta lướt qua nhau mà anh lại rụt rè, anh của về sau có thể xem đây là một bài học đắt giá cho anh.
+                          bướng bỉnh tranh cãi ngày đó, xin lỗi những lần ta
+                          lướt qua nhau mà anh lại rụt rè, anh của về sau có thể
+                          xem đây là một bài học đắt giá cho anh.
                         </p>
                         <p className="italic text-[11px] text-[#C97A2B] mt-2 mb-50">
                           Lời xin lỗi này không cầu xin bất kỳ sự tha thứ hay
@@ -613,7 +615,7 @@ export default function App() {
           <section className="py-10 border-t border-[#E8DFD3]">
             <div className="text-center mb-6">
               <span className="text-xs text-[#8A6D52] uppercase tracking-widest font-mono font-medium block mb-1">
-                Lưu giữ 
+                Lưu giữ
               </span>
               <h3 className="text-xl font-serif font-bold text-[#C97A2B]">
                 Những điều anh luôn trân trọng ở em
@@ -921,6 +923,7 @@ export default function App() {
                   trong mọi hành trình tiếp theo, và luôn tràn ngập hạnh phúc
                   bên những sự lựa chọn của bản thân.
                 </p>
+                <p>Mà quên nữa, anh đổi kiểu tóc rồi.....</p>
               </div>
 
               <div className="mt-8 border-t border-[#FFDFA8]/25 pt-4 text-center">
