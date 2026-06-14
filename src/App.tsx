@@ -287,7 +287,7 @@ export default function App() {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-lg font-cute text-[#2A1C14]/90 font-medium mt-2 mb-6"
             >
-              Phương Thùy 🌻
+              Đoàn Thị Phương Thùy 🌻
             </motion.h3>
 
             <motion.div
@@ -359,7 +359,7 @@ export default function App() {
           <section className="py-10 border-t border-[#E8DFD3]">
             <div className="text-center mb-6">
               <span className="text-xs text-[#8A6D52] uppercase tracking-widest font-mono font-medium block mb-1">
-                Lời tri ân sâu sắc
+                Đôi lời nên nói
               </span>
               <h3 className="text-xl font-serif font-bold text-[#C97A2B]">
                 Những điều anh muốn cảm ơn
