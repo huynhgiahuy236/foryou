@@ -1,0 +1,6 @@
+{
+  "name": "Mừng Sinh Nhật Phương Thùy",
+  "description": "Trang web chúc mừng sinh nhật ấm áp, nhẹ nhàng dành tặng Phương Thùy nhân dịp sinh nhật 15/06.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
