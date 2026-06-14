@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Sparkles, X, Heart } from "lucide-react";
 
-interface Wish {
+interface wish {
   id: number;
   text: string;
 }
@@ -34,7 +34,7 @@ export default function SunflowerGarden() {
   const [openedWishes, setOpenedWishes] = useState<number[]>([]);
   const [activeWishIndex, setActiveWishIndex] = useState<number | null>(null);
 
-  const handleFlowerClick = (id: number) => {
+  const handleFlowerClick = (id) => {
     if (!openedWishes.includes(id)) {
       setOpenedWishes((prev) => [...prev, id]);
     }

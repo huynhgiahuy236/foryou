@@ -46,11 +46,17 @@ export default function App() {
   const [openTrantrong, setOpenTrantrong] = useState<number[]>([]);
   const [giftOpened, setGiftOpened] = useState(false);
   const [audioPlay, setAudioPlay] = useState(false);
-
+  const [currentSong, setCurrentSong] = useState(0);
   // References for scrolling indicators or section triggers
   const contentRef = useRef<HTMLDivElement>(null);
-
+  const audioRef = useRef<HTMLAudioElement>(null);
   // Interactive topics data for Sections
+  const playlist = [
+    "/music/phuongthuy.mp3",
+    "/music/hoangdung.mp3",
+    "/music/toidaidot.mp3",
+    "/music/xuanthi.mp3",
+  ];
   const thankCards: ThankCard[] = [
     {
       id: 1,
@@ -63,14 +69,14 @@ export default function App() {
       id: 2,
       title: "Cảm ơn những khoảng thời gian đã từng",
       message:
-        "Cảm ơn em đã chia sẻ cùng anh những buổi chiều lang thang, những cuộc trò chuyện dài không đầu không cuối. Khoảng thời gian tuy giản đơn nhưng vô cùng đáng quý mà ta có được bên nhau.",
+        "Cảm ơn em đã chia sẻ cùng anh, những cuộc trò chuyện dài không đầu không cuối. Khoảng thời gian tuy giản đơn nhưng vô cùng đáng quý mà ta có được bên nhau.",
       icon: "✨",
     },
     {
       id: 3,
       title: "Cảm ơn những điều em đã làm cho anh",
       message:
-        "Cảm ơn em vì sự chu đáo, những sự động viên thầm lặng và cách em lắng nghe mỗi lần anh vụng dại hay lạc lối. Nhờ có những điều ấm áp em gửi trao mà anh đã vượt qua được nhiều ngày chông chênh.",
+        "Cảm ơn em vì sự chu đáo, những sự động viên thầm lặng và cách em lắng nghe mỗi lần anh vụng dại hay lạc lối. Những điều cho đến nay anh mới thấy quý trọng.",
       icon: "🧁",
     },
     {
@@ -92,59 +98,128 @@ export default function App() {
   const characterCards: CharacterCard[] = [
     {
       id: 1,
-      title: "Sự tử tế",
-      description: "Trái tim nhân hậu ấm áp",
+      title: "Giọng nói của em",
+      description: "Dễ thương",
       detail:
-        "Cách em đối xử hiền hòa với mọi người xung quanh, luôn biết lo lắng chu toàn và muốn dành những điều ngọt ngào nhất cho những ai bên cạnh em.",
+        "Anh nhiều lúc cũng không biết rằng mình có đang thực sự nhớ được giọng của em không, nhưng trong kí ức của anh lúc nào cũng là một điều đặt biệt.",
     },
     {
       id: 2,
       title: "Nụ cười của em",
-      description: "Thứ có thể thắp sáng ngày u tối",
+      description: "Nhẹ nhàng ấm áp",
       detail:
-        "Anh vẫn nhớ nụ cười rạng rỡ của em ngày nào. Nó mang đầy năng lượng tích cực, trong sáng và chân thành vô cùng.",
+        "Anh vẫn nhớ nụ cười rạng rỡ của em ngày nào. Nó mang đầy năng lượng tích cực, trong sáng và chân thành vô cùng, anh hy vọng em của tháng ngày sau lúc nào cũng có thể tươi cười.",
     },
     {
       id: 3,
-      title: "Sự kiên nhẫn",
-      description: "Sự bao dung tuyệt vời ngày ấy",
+      title: "Mái tóc của em",
+      description: "Như in mùi hương trong đầu anh",
       detail:
-        "Cảm ơn sự nhẫn nại phi thường em từng dành cho những điểm bồng bột, dại dột và thiếu chín chắn vô lo của anh thuở trước.",
+        "Anh cũng không biết em sẽ có đọc dòng này hay không, thú thật anh dùng nhiều loại lắm chẳng có cái mùi nào giống vậy, chắc vì vậy nên nó mới đặc biệt với anh.",
     },
     {
       id: 4,
-      title: "Cách em quan tâm mọi người",
-      description: "Chu đáo và hết sức tinh tế",
+      title: "Cách em quan tâm anh",
+      description: "Mong anh trưởng thành hơn",
       detail:
-        "Em luôn nhớ sở thích nhỏ nhặt của người thân, chăm chút từng miếng ăn nước uống, mang lại sự yên lòng và quan tâm tuyệt đối.",
+        "Nhiều lần cãi vã nhung em không rời đi, ngày này tháng nọ, anh mong em hiểu ngày tháng ấy anh còn non nớt, anh luôn mong em vui Phương Thùy.",
     },
     {
       id: 5,
       title: "Những cá tính rất riêng",
-      description: "Phương Thùy duy nhất và định nghĩa chính mình",
+      description: "Phương Thùy duy nhất ",
       detail:
-        "Sự bộc trực thấu hiểu, pha chút bướng bỉnh đáng yêu của em tạo nên một cá tính đặc trưng, khiến em luôn là người đặc biệt nhất.",
+        "Đôi lúc em thế này nhưng đôi lúc em lại có chút bướng bỉnh đáng yêu tạo nên một cá tính đặc trưng, khiến em luôn là người đặc biệt nhất.",
     },
   ];
 
   const handleToggleTrantrong = (id: number) => {
     if (openTrantrong.includes(id)) {
-      setOpenTrantrong(openTrantrong.filter((item) => item !== id));
+      setOpenTrantrong(openTrantrong.filter((item: any) => item !== id));
     } else {
       setOpenTrantrong([...openTrantrong, id]);
     }
   };
+  // 1. Hàm chuyển bài (chỉ cập nhật State)
+  const handleNextSong = () => {
+    // Logic modulo % đảm bảo nó luôn quay vòng từ bài cuối về bài đầu
+    setCurrentSong((prev: any) => (prev + 1) % playlist.length);
+  };
+  // 2. useEffect để đảm bảo nhạc luôn tự chạy khi đổi bài
+  // Thay thế useEffect hiện tại của bạn bằng đoạn này:
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
 
+    // Đảm bảo âm thanh luôn được phát khi bài hát thay đổi
+    const playAudio = async () => {
+      try {
+        await audio.play();
+        setAudioPlay(true);
+      } catch (err) {
+        console.log("Cần tương tác để phát nhạc:", err);
+        setAudioPlay(false);
+      }
+    };
+
+    playAudio();
+  }, [currentSong]); // Chỉ chạy khi bài hát thay đổi
   return (
     <div className="relative min-h-screen bg-[#F6EFE4] text-[#2A1C14] flex flex-col items-center overflow-x-hidden w-full select-none selection:bg-[#FFDFA8] no-scrollbar">
+      <audio
+        ref={audioRef}
+        src={playlist[currentSong]}
+        onEnded={handleNextSong} // Tự chuyển khi hết bài
+        key={currentSong} // BÍ QUYẾT: Dùng key để React tạo lại thẻ audio khi đổi bài
+      />
       {/* 1. Opening Experience Overlay */}
       <AnimatePresence>
-        {!started && <OpeningScreen onComplete={() => setStarted(true)} />}
+        {!started && (
+          <OpeningScreen
+            onComplete={() => {
+              setStarted(true);
+
+              setTimeout(() => {
+                if (audioRef.current) {
+                  audioRef.current.volume = 0.25;
+                  audioRef.current.play();
+                }
+              }, 100);
+            }}
+          />
+        )}
       </AnimatePresence>
 
       {/* Visual Overlay Elements from Natural Tones Theme */}
       {started && (
         <>
+          <div className="fixed bottom-10 right-5 z-[9999] flex gap-2">
+            <button
+              onClick={handleNextSong} // Sử dụng lại logic chuyển bài
+              className="bg-black/20 backdrop-blur px-3 py-2 rounded-full shadow-lg text-xs font-mono"
+            >
+              <i class="fa-solid fa-forward text-white"></i>
+            </button>
+
+            <button
+              onClick={() => {
+                if (!audioRef.current) return;
+                if (audioRef.current.paused) {
+                  audioRef.current.play().then(() => setAudioPlay(true));
+                } else {
+                  audioRef.current.pause();
+                  setAudioPlay(false);
+                }
+              }}
+              className="bg-black/20 backdrop-blur px-2 py-2 rounded-full shadow-lg"
+            >
+              {audioPlay ? (
+                <i class="fa-solid fa-pause text-white"></i>
+              ) : (
+                <i class="fa-solid fa-play text-white"></i>
+              )}
+            </button>
+          </div>
           <div className="fixed top-24 right-[-40px] w-56 h-56 border border-[#C97A2B] border-dashed rounded-full opacity-10 animate-pulse pointer-events-none z-0" />
           <div className="fixed bottom-32 left-[-15px] text-5xl opacity-10 select-none pointer-events-none z-0">
             🌻
@@ -341,7 +416,7 @@ export default function App() {
           </section>
 
           {/* ---------- SECTION 4: NHỮNG ĐIỀU ANH MUỐN XIN LỖI ---------- */}
-          <section className="py-10 border-t border-[#E8DFD3] text-center">
+          <section className="pb-10 pt-25 border-t border-[#E8DFD3] text-center">
             <div className="mb-6">
               <span className="text-xs text-[#8A6D52] uppercase tracking-widest font-mono font-medium block mb-1">
                 Góc thư thầm kín
@@ -353,7 +428,7 @@ export default function App() {
 
             <div className="relative flex flex-col items-center">
               {/* Envelope Container */}
-              <div className="relative w-full max-w-[280px] h-[210px] flex items-center justify-center mt-4">
+              <div className="relative w-full max-w-[300px] h-[210px] flex items-center justify-center mt-4">
                 {/* Letter Sliding out */}
                 <AnimatePresence>
                   {envelopeOpen && (
@@ -366,7 +441,7 @@ export default function App() {
                         stiffness: 100,
                         damping: 15,
                       }}
-                      className="absolute w-[260px] bg-[#FFF9F2] rounded-3xl border border-[#E8DFD3] p-5 shadow-2xl z-10 text-left text-xs text-[#2A1C14]"
+                      className="absolute w-[280px] bg-[#FFF9F2] rounded-3xl border border-[#E8DFD3] p-5 shadow-2xl z-10 text-left text-xs text-[#2A1C14]"
                     >
                       <div className="w-full flex justify-between items-center border-b border-[#E8DFD3] pb-1.5 mb-2.5">
                         <span className="font-serif font-semibold text-[#C97A2B] text-[11px]">
@@ -375,24 +450,27 @@ export default function App() {
                         <div className="w-1.5 h-1.5 rounded-full bg-[#C97A2B]" />
                       </div>
 
-                      <div className="space-y-2 leading-relaxed font-light text-[#8A6D52] pr-1 overflow-y-auto max-h-[140px] no-scrollbar">
+                      <div className="space-y-2 leading-relaxed font-light text-[#8A6D52] pr-1 overflow-y-auto max-h-[320px] no-scrollbar">
                         <p className="font-serif font-bold text-[#2A1C14]">
                           Thùy thương mến,
                         </p>
                         <p>
-                          Đi qua những bồng bột, anh nhìn lại quá khứ dưới góc
-                          nhìn của một người chín chắn hơn. Đôi dòng này anh nợ
-                          em muộn màng:
+                          Đi qua những ngày non trẻ, anh của hiện tại không
+                          chính chắn là bao nhưng lúc anh nhìn lại quá khứ anh
+                          nghĩ đôi lần anh còn nợ em :
                         </p>
                         <p>
                           • <b>Lần anh vô tâm:</b> Đã có những thời điểm anh quá
-                          bận tâm với chiếc tôi của mình mà lơ đễnh đi những tâm
-                          tư sâu thẳm trong em.
+                          bận tâm với đến mình mà quên đi em những ngày em khó
+                          khăn, những ngày quan trọng đáng lẽ anh nên ở đó hoăc
+                          đơn giản là anh nên dành đôi ba lời chút và hỏi thăm
+                          cho em.
                         </p>
                         <p>
-                          • <b>Anh không thấu hiểu:</b> Đôi lúc sự vụng dại,
-                          thiếu kiên nhẫn đã ngăn cản anh cảm nhận rõ ràng nhất
-                          nỗi mệt mỏi hay tủi thân mà em chịu đựng.
+                          • <b>Anh không thấu hiểu:</b> Em biết rõ suốt chặng
+                          đường mình đi anh chỉ như đứa con nít tập lớn, thiếu
+                          kiên nhẫn và chính chắn đã ngăn cản anh cảm nhận rõ
+                          ràng nhất nỗi mệt mỏi hay tủi thân mà em chịu đựng.
                         </p>
                         <p>
                           • <b>Làm em rơi nước mắt:</b> Vô ý hay hữu ý, anh rất
@@ -402,13 +480,14 @@ export default function App() {
                         <p>
                           • <b>Những điều đáng lẽ:</b> Lẽ ra anh nên bao dung
                           hơn, nhường nhịn hơn và chia sẻ chân thành thay vì
-                          bướng bỉnh tranh cãi ngày đó.
+                          bướng bỉnh tranh cãi ngày đó, xin lỗi những lần ta lướt qua nhau mà anh lại rụt rè, anh của về sau có thể xem đây là một bài học đắt giá cho anh.
                         </p>
-                        <p className="italic text-[11px] text-[#C97A2B] mt-2">
+                        <p className="italic text-[11px] text-[#C97A2B] mt-2 mb-50">
                           Lời xin lỗi này không cầu xin bất kỳ sự tha thứ hay
-                          thay đổi nào, nó mong lòng em từ nay trút bỏ được sự
-                          bận lòng nếu có.
+                          thay đổi nào, nó mong em hay đúng hơn và cả bản thân
+                          anh có thể trút bỏ được sự bận lòng nếu có.
                         </p>
+                        <p></p>
                       </div>
                     </motion.div>
                   )}
@@ -454,7 +533,7 @@ export default function App() {
           </section>
 
           {/* ---------- SECTION 5: NHỮNG ĐIỀU ANH VẪN NHỚ ---------- */}
-          <section className="py-10 border-t border-[#E8DFD3]">
+          {/* <section className="py-10 border-t border-[#E8DFD3]">
             <div className="text-center mb-6">
               <span className="text-xs text-[#8A6D52] uppercase tracking-widest font-mono font-medium block mb-1">
                 Thời gian trôi, ký ức ở lại
@@ -464,9 +543,7 @@ export default function App() {
               </h3>
             </div>
 
-            {/* Polaroid style layouts with a stunning premium contrast card */}
             <div className="space-y-6">
-              {/* Polaroid 1 */}
               <motion.div
                 whileHover={{ rotate: 1, scale: 1.02 }}
                 className="bg-[#FFF9F2] p-5 pb-6 border border-[#E8DFD3] shadow-sm rounded-3xl rotate-[-1.5deg] max-w-[280px] mx-auto"
@@ -487,7 +564,7 @@ export default function App() {
                 </p>
               </motion.div>
 
-              {/* Polaroid 2 — Spectacular Dark Contrast card inspired by Natural Tones Design HTML */}
+             
               <motion.div
                 whileHover={{ rotate: -1, scale: 1.02 }}
                 className="bg-[#2A1C14] text-[#F6EFE4] p-6 pb-8 border border-[#2A1C14] shadow-md rounded-[36px] rotate-[1.5deg] max-w-[280px] mx-auto relative overflow-hidden"
@@ -509,7 +586,7 @@ export default function App() {
                 </p>
               </motion.div>
 
-              {/* Polaroid 3 */}
+             
               <motion.div
                 whileHover={{ rotate: 1.5, scale: 1.02 }}
                 className="bg-[#FFF9F2] p-5 pb-6 border border-[#E8DFD3] shadow-sm rounded-3xl rotate-[-0.5deg] max-w-[280px] mx-auto"
@@ -530,13 +607,13 @@ export default function App() {
                 </p>
               </motion.div>
             </div>
-          </section>
+          </section> */}
 
           {/* ---------- SECTION 6: NHỮNG ĐIỀU ANH LUÔN TRÂN TRỌNG ---------- */}
           <section className="py-10 border-t border-[#E8DFD3]">
             <div className="text-center mb-6">
               <span className="text-xs text-[#8A6D52] uppercase tracking-widest font-mono font-medium block mb-1">
-                Lưu giữ báu vật tâm hồn
+                Lưu giữ 
               </span>
               <h3 className="text-xl font-serif font-bold text-[#C97A2B]">
                 Những điều anh luôn trân trọng ở em
